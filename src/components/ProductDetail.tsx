@@ -45,12 +45,15 @@ const OPTIONS_CONFIG = [
 ];
 
 const COLORS = [
-  { id: "noir", label: "Noir", icon: "/icons/base.svg" },
-  { id: "blanc", label: "Blanc nacré", icon: "/icons/color-white.svg" },
-  { id: "chrome", label: "Chrome", icon: "/icons/color-chrome.svg" },
-  { id: "bleu", label: "Bleu", icon: "/icons/color-blue.svg" },
-  { id: "or", label: "Or premium", icon: "/icons/base-or.svg" },
-  { id: "perso", label: "Sur mesure", icon: "/icons/color-custom.svg" },
+  { id: "noir", label: "Noir", color: "#000000" },
+  { id: "blanc", label: "Blanc nacré", color: "#F5F5F5" },
+  { id: "gris", label: "Gris clair", color: "#9CA3AF" },
+  { id: "anthracite", label: "Anthracite", color: "#3F3F46" },
+  { id: "chrome", label: "Chrome", color: "linear-gradient(135deg, #E5E5E5, #B8B8B8, #FFFFFF, #C0C0C0)" },
+  { id: "argent", label: "Argent", color: "#C0C0C0" },
+  { id: "bleu", label: "Bleu", color: "#1E40AF" },
+  { id: "rouge", label: "Rouge", color: "#B91C1C" },
+  { id: "perso", label: "Sur mesure", color: "conic-gradient(from 0deg, #ff0080, #ff8c00, #ffd700, #00ff80, #00d4ff, #8c00ff, #ff0080)" },
 ];
 
 export default function ProductDetail({ product }: { product: Product }) {
@@ -194,25 +197,23 @@ export default function ProductDetail({ product }: { product: Product }) {
                     key={item.id}
                     whileTap={{ scale: 0.96 }}
                     onClick={() => toggleOption(group.id, item.id, group.multi)}
-                    className={`relative aspect-square rounded-2xl border-2 flex flex-col items-center justify-between p-2 pt-3 transition-all overflow-hidden ${
+                    className={`relative h-24 rounded-xl border flex flex-col items-center justify-center px-1 py-1 transition-all overflow-hidden ${
                       isSelected
-                        ? "bg-gradient-to-br from-[#FFF5D6] via-[#F5E9C0] to-[#E8D9A6] border-[#C9A84C] shadow-[0_0_16px_rgba(201,168,76,0.45)]"
+                        ? "bg-gradient-to-br from-[#FFF5D6] via-[#F5E9C0] to-[#E8D9A6] border-2 border-[#C9A84C] shadow-[0_0_12px_rgba(201,168,76,0.45)]"
                         : "bg-gradient-to-br from-[#FAF3DF] to-[#EFE3BC] border-[#D4C088]/60"
                     }`}
                   >
-                    <div className="flex-1 flex items-center justify-center w-full px-2">
-                      <img
-                        src={item.icon}
-                        alt={item.label}
-                        className="max-h-16 w-auto object-contain"
-                      />
-                    </div>
-                    <span className="text-[11px] font-bold text-[#1A1A1A] text-center leading-tight">
+                    <img
+                      src={item.icon}
+                      alt={item.label}
+                      className="h-14 w-auto object-contain -mb-0.5"
+                    />
+                    <span className="text-[10px] font-bold text-[#1A1A1A] text-center leading-tight">
                       {item.label}
                     </span>
                     {isSelected && (
-                      <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-[#0A0A0A] border-2 border-[#C9A84C] flex items-center justify-center">
-                        <svg className="w-2.5 h-2.5 text-[#C9A84C]" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                      <div className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#0A0A0A] border border-[#C9A84C] flex items-center justify-center">
+                        <svg className="w-2 h-2 text-[#C9A84C]" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
                           <path d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
@@ -224,42 +225,37 @@ export default function ProductDetail({ product }: { product: Product }) {
           </section>
         ))}
 
-        {/* Couleurs */}
+        {/* Couleurs - petits cercles */}
         <section className="px-5">
-          <h3 className="text-base font-bold text-white mb-3">4. Finition / Couleur</h3>
-          <div className="grid grid-cols-3 gap-2">
-            {COLORS.map((c) => {
-              const isSel = color === c.id;
-              return (
-                <button
-                  key={c.id}
-                  onClick={() => setColor(c.id)}
-                  className={`relative aspect-square rounded-2xl border-2 flex flex-col items-center justify-between p-2 pt-3 overflow-hidden transition-all ${
-                    isSel
-                      ? "bg-gradient-to-br from-[#FFF5D6] via-[#F5E9C0] to-[#E8D9A6] border-[#C9A84C] shadow-[0_0_16px_rgba(201,168,76,0.45)]"
-                      : "bg-gradient-to-br from-[#FAF3DF] to-[#EFE3BC] border-[#D4C088]/60"
-                  }`}
-                >
-                  <div className="flex-1 flex items-center justify-center w-full px-2">
-                    <img
-                      src={c.icon}
-                      alt={c.label}
-                      className="max-h-14 w-auto object-contain"
+          <h3 className="text-base font-bold text-white mb-3">4. Couleur</h3>
+          <div className="rounded-2xl bg-gradient-to-br from-[#FAF3DF] to-[#EFE3BC] border border-[#D4C088]/60 p-4">
+            <div className="flex flex-wrap gap-3 justify-center">
+              {COLORS.map((c) => {
+                const isSel = color === c.id;
+                return (
+                  <button
+                    key={c.id}
+                    onClick={() => setColor(c.id)}
+                    title={c.label}
+                    className="relative flex flex-col items-center gap-1 active:scale-90 transition-transform"
+                  >
+                    <div
+                      className={`w-10 h-10 rounded-full border-2 transition-all ${
+                        isSel
+                          ? "border-[#1A1A1A] shadow-[0_0_0_2px_#C9A84C,0_0_12px_rgba(201,168,76,0.6)]"
+                          : "border-white shadow-md"
+                      }`}
+                      style={{ background: c.color }}
                     />
-                  </div>
-                  <span className="text-[10px] font-bold text-[#1A1A1A] text-center leading-tight">
-                    {c.label}
-                  </span>
-                  {isSel && (
-                    <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-[#0A0A0A] border-2 border-[#C9A84C] flex items-center justify-center">
-                      <svg className="w-2.5 h-2.5 text-[#C9A84C]" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                        <path d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                  )}
-                </button>
-              );
-            })}
+                    {isSel && (
+                      <span className="text-[9px] font-bold text-[#1A1A1A] text-center leading-tight max-w-[60px]">
+                        {c.label}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </section>
 
