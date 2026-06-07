@@ -30,20 +30,22 @@ export type Mechanic = {
   phone: string;
 };
 
-// Real official brand logos (local SVG)
+// Real official brand logos (local SVG) — 15 brands
 export const BRANDS: Brand[] = [
-  { id: "dacia", name: "Dacia", logo: "/brands/renault.svg" }, // Dacia uses Renault group, fallback
   { id: "renault", name: "Renault", logo: "/brands/renault.svg" },
   { id: "peugeot", name: "Peugeot", logo: "/brands/peugeot.svg" },
   { id: "citroen", name: "Citroën", logo: "/brands/citroen.svg" },
   { id: "hyundai", name: "Hyundai", logo: "/brands/hyundai.svg" },
   { id: "kia", name: "Kia", logo: "/brands/kia.svg" },
+  { id: "toyota", name: "Toyota", logo: "/brands/toyota.svg" },
   { id: "nissan", name: "Nissan", logo: "/brands/nissan.svg" },
   { id: "fiat", name: "Fiat", logo: "/brands/fiat.svg" },
   { id: "mercedes", name: "Mercedes", logo: "/brands/mercedes.svg" },
+  { id: "bmw", name: "BMW", logo: "/brands/bmw.svg" },
+  { id: "audi", name: "Audi", logo: "/brands/audi.svg" },
   { id: "opel", name: "Opel", logo: "/brands/opel.svg" },
   { id: "skoda", name: "Škoda", logo: "/brands/skoda.svg" },
-  { id: "audi", name: "Audi", logo: "/brands/audi.svg" },
+  { id: "seat", name: "SEAT", logo: "/brands/seat.svg" },
   { id: "honda", name: "Honda", logo: "/brands/honda.svg" },
 ];
 
@@ -52,7 +54,7 @@ export const PRODUCTS: Product[] = [
     id: "p1",
     brand: "Dacia",
     brandLogo: "/brands/renault.svg",
-    model: "Duster",
+    model: "Duster (Dacia)",
     year: 2025,
     category: "complet",
     price: 1290,
