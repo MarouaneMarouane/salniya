@@ -199,7 +199,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                     key={item.id}
                     whileTap={{ scale: 0.96 }}
                     onClick={() => toggleOption(group.id, item.id, group.multi)}
-                    className={`relative h-[88px] rounded-xl border flex flex-col items-center justify-center px-1 py-1 transition-all overflow-hidden ${
+                    className={`relative h-[108px] rounded-xl border flex flex-col items-center justify-center px-1 py-1.5 transition-all overflow-hidden ${
                       isSelected
                         ? "bg-gradient-to-br from-[#FFF5D6] via-[#F5E9C0] to-[#E8D9A6] border-2 border-[#C9A84C] shadow-[0_0_12px_rgba(201,168,76,0.45)]"
                         : "bg-gradient-to-br from-[#FAF3DF] to-[#EFE3BC] border-[#D4C088]/60"
@@ -208,9 +208,9 @@ export default function ProductDetail({ product }: { product: Product }) {
                     <img
                       src={item.icon}
                       alt={item.label}
-                      className="h-11 w-auto object-contain"
+                      className="h-16 w-auto object-contain"
                     />
-                    <span className="text-[9px] font-bold text-[#1A1A1A] text-center leading-tight mt-0.5 px-0.5">
+                    <span className="text-[10px] font-bold text-[#1A1A1A] text-center leading-tight mt-1 px-0.5">
                       {item.label}
                     </span>
                     {isSelected && (
