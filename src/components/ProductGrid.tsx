@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Star, ShoppingCart } from "lucide-react";
 import { PRODUCTS } from "@/lib/data";
+import Link from "next/link";
 
 export default function ProductGrid() {
   return (
@@ -27,6 +28,7 @@ export default function ProductGrid() {
             whileTap={{ scale: 0.97 }}
             className="card-premium rounded-2xl overflow-hidden relative"
           >
+            <Link href={`/produit/${product.id}`} className="absolute inset-0 z-20" />
             {/* Badges top */}
             {product.badges && product.badges.length > 0 && (
               <div className="absolute top-2 left-2 z-10 flex flex-col gap-1">
@@ -47,9 +49,7 @@ export default function ProductGrid() {
                 src={product.brandLogo}
                 alt={product.brand}
                 className="w-5 h-5 object-contain"
-                style={{
-                  filter: "invert(78%) sepia(33%) saturate(694%) hue-rotate(8deg) brightness(98%) contrast(92%)",
-                }}
+                style={{ filter: "brightness(0) invert(1)" }}
                 loading="lazy"
               />
             </div>

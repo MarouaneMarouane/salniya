@@ -2,29 +2,30 @@
 
 import { Home, Search, ShoppingBag, Heart, User } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
-  { id: "home", label: "Accueil", icon: Home },
-  { id: "search", label: "Recherche", icon: Search },
-  { id: "cart", label: "Panier", icon: ShoppingBag, badge: 0 },
-  { id: "fav", label: "Favoris", icon: Heart },
-  { id: "account", label: "Compte", icon: User },
+  { id: "home", label: "Accueil", icon: Home, href: "/" },
+  { id: "search", label: "Catalogue", icon: Search, href: "/catalogue" },
+  { id: "cart", label: "Panier", icon: ShoppingBag, href: "/panier", badge: 0 },
+  { id: "fav", label: "Favoris", icon: Heart, href: "/favoris" },
+  { id: "account", label: "Compte", icon: User, href: "/compte" },
 ];
 
 export default function BottomNav() {
-  const [active, setActive] = useState("home");
+  const pathname = usePathname();
 
   return (
     <nav className="fixed bottom-0 left-0 right-[60px] z-50 glass safe-bottom no-select max-w-[calc(28rem-60px)] mx-auto">
       <div className="flex items-center justify-around px-2 py-2">
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
-          const isActive = active === item.id;
+          const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
           return (
-            <button
+            <Link
               key={item.id}
-              onClick={() => setActive(item.id)}
+              href={item.href}
               className="relative flex flex-col items-center justify-center gap-1 py-2 px-2 min-w-[48px]"
             >
               {isActive && (
@@ -54,7 +55,7 @@ export default function BottomNav() {
               >
                 {item.label}
               </span>
-            </button>
+            </Link>
           );
         })}
       </div>

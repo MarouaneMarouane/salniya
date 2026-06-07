@@ -27,15 +27,14 @@ export default function BrandsSidebar() {
               }`}
               aria-label={brand.name}
             >
-              {/* SVG logo (originally black) - we invert to gold via filter */}
               <img
                 src={brand.logo}
                 alt={brand.name}
                 className="w-7 h-7 object-contain transition-all"
                 style={{
                   filter: isActive
-                    ? "brightness(0)" // black on gold bg
-                    : "invert(78%) sepia(33%) saturate(694%) hue-rotate(8deg) brightness(98%) contrast(92%)", // gold tint
+                    ? "brightness(0) saturate(100%)"
+                    : "brightness(0) invert(1)",
                 }}
                 loading="lazy"
               />
