@@ -85,23 +85,28 @@ export default function ProductDetail({ product }: { product: Product }) {
 
   return (
     <main className="relative min-h-screen bg-[#0A0A0A] text-white pb-32 max-w-md mx-auto">
-      {/* Sticky header */}
+      {/* Sticky header — style original avec panier + titre produit */}
       <header className="fixed top-0 left-0 right-0 z-40 glass safe-top max-w-md mx-auto">
-        <div className="flex items-center justify-between px-3 py-3">
-          <Link href="/" className="w-10 h-10 rounded-full bg-[#1A1A1A] border border-[#C9A84C]/30 flex items-center justify-center">
-            <ChevronLeft className="w-5 h-5 text-[#C9A84C]" />
+        <div className="flex items-center gap-3 px-3 py-2.5">
+          {/* Cart icon with badge */}
+          <Link href="/panier" className="relative w-12 h-12 flex-shrink-0">
+            <div className="w-full h-full rounded-full bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A] border border-[#C9A84C]/30 flex items-center justify-center">
+              <ShoppingCart className="w-5 h-5 text-[#C9A84C]" strokeWidth={2} />
+            </div>
+            <span className="absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full bg-[#C9A84C] text-black text-[10px] font-black flex items-center justify-center border-2 border-[#0A0A0A]">
+              0
+            </span>
           </Link>
-          <div className="text-sm font-bold text-white truncate max-w-[180px]">
-            {product.brand} {product.model} {product.year}
-          </div>
-          <div className="flex items-center gap-2">
-            <button className="w-10 h-10 rounded-full bg-[#1A1A1A] border border-[#C9A84C]/30 flex items-center justify-center">
-              <Heart className="w-4 h-4 text-[#C9A84C]" />
-            </button>
-            <button className="w-10 h-10 rounded-full bg-[#1A1A1A] border border-[#C9A84C]/30 flex items-center justify-center">
-              <Share2 className="w-4 h-4 text-[#C9A84C]" />
-            </button>
-          </div>
+
+          {/* Product title */}
+          <h2 className="flex-1 text-lg font-black text-white tracking-tight truncate">
+            {product.brand}-{product.model}-{product.year}
+          </h2>
+
+          {/* Heart */}
+          <button className="w-10 h-10 rounded-full bg-[#1A1A1A] border border-[#C9A84C]/30 flex items-center justify-center flex-shrink-0">
+            <Heart className="w-4 h-4 text-[#C9A84C]" />
+          </button>
         </div>
       </header>
 
@@ -189,30 +194,25 @@ export default function ProductDetail({ product }: { product: Product }) {
                     key={item.id}
                     whileTap={{ scale: 0.96 }}
                     onClick={() => toggleOption(group.id, item.id, group.multi)}
-                    className={`relative h-28 rounded-2xl border-2 flex flex-col items-center justify-center gap-1.5 transition-all overflow-hidden ${
+                    className={`relative aspect-square rounded-2xl border-2 flex flex-col items-center justify-between p-2 pt-3 transition-all overflow-hidden ${
                       isSelected
-                        ? "bg-gradient-to-br from-[#E5C870]/15 to-[#8B7330]/10 border-[#C9A84C] shadow-[0_0_16px_rgba(201,168,76,0.3)]"
-                        : "bg-[#141414] border-white/10"
+                        ? "bg-gradient-to-br from-[#FFF5D6] via-[#F5E9C0] to-[#E8D9A6] border-[#C9A84C] shadow-[0_0_16px_rgba(201,168,76,0.45)]"
+                        : "bg-gradient-to-br from-[#FAF3DF] to-[#EFE3BC] border-[#D4C088]/60"
                     }`}
                   >
-                    <div className="flex-1 flex items-center justify-center px-3 w-full">
+                    <div className="flex-1 flex items-center justify-center w-full px-2">
                       <img
                         src={item.icon}
                         alt={item.label}
-                        className="max-h-12 w-auto object-contain"
-                        style={{
-                          filter: isSelected
-                            ? "none"
-                            : "brightness(0) invert(1) opacity(0.6)",
-                        }}
+                        className="max-h-16 w-auto object-contain"
                       />
                     </div>
-                    <span className={`text-[11px] font-semibold pb-2 px-1 text-center leading-tight ${isSelected ? "text-[#C9A84C]" : "text-zinc-400"}`}>
+                    <span className="text-[11px] font-bold text-[#1A1A1A] text-center leading-tight">
                       {item.label}
                     </span>
                     {isSelected && (
-                      <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#C9A84C] flex items-center justify-center">
-                        <svg className="w-2.5 h-2.5 text-black" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                      <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-[#0A0A0A] border-2 border-[#C9A84C] flex items-center justify-center">
+                        <svg className="w-2.5 h-2.5 text-[#C9A84C]" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
                           <path d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
@@ -234,26 +234,25 @@ export default function ProductDetail({ product }: { product: Product }) {
                 <button
                   key={c.id}
                   onClick={() => setColor(c.id)}
-                  className={`relative h-24 rounded-2xl border-2 flex flex-col items-center justify-center gap-1 overflow-hidden transition-all ${
+                  className={`relative aspect-square rounded-2xl border-2 flex flex-col items-center justify-between p-2 pt-3 overflow-hidden transition-all ${
                     isSel
-                      ? "bg-gradient-to-br from-[#E5C870]/15 to-[#8B7330]/10 border-[#C9A84C] shadow-[0_0_16px_rgba(201,168,76,0.3)]"
-                      : "bg-[#141414] border-white/10"
+                      ? "bg-gradient-to-br from-[#FFF5D6] via-[#F5E9C0] to-[#E8D9A6] border-[#C9A84C] shadow-[0_0_16px_rgba(201,168,76,0.45)]"
+                      : "bg-gradient-to-br from-[#FAF3DF] to-[#EFE3BC] border-[#D4C088]/60"
                   }`}
                 >
-                  <div className="flex-1 flex items-center justify-center px-2 pt-2 w-full">
+                  <div className="flex-1 flex items-center justify-center w-full px-2">
                     <img
                       src={c.icon}
                       alt={c.label}
-                      className="max-h-10 w-auto object-contain"
-                      style={{ filter: isSel ? "none" : "opacity(0.85)" }}
+                      className="max-h-14 w-auto object-contain"
                     />
                   </div>
-                  <span className={`text-[10px] font-semibold pb-1.5 text-center leading-tight px-1 ${isSel ? "text-[#C9A84C]" : "text-zinc-400"}`}>
+                  <span className="text-[10px] font-bold text-[#1A1A1A] text-center leading-tight">
                     {c.label}
                   </span>
                   {isSel && (
-                    <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#C9A84C] flex items-center justify-center">
-                      <svg className="w-2.5 h-2.5 text-black" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                    <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-[#0A0A0A] border-2 border-[#C9A84C] flex items-center justify-center">
+                      <svg className="w-2.5 h-2.5 text-[#C9A84C]" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
                         <path d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
