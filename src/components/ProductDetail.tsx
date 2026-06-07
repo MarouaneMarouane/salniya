@@ -45,14 +45,16 @@ const OPTIONS_CONFIG = [
 ];
 
 const COLORS = [
-  { id: "noir", label: "Noir", color: "#000000" },
-  { id: "blanc", label: "Blanc nacré", color: "#F5F5F5" },
-  { id: "gris", label: "Gris clair", color: "#9CA3AF" },
-  { id: "anthracite", label: "Anthracite", color: "#3F3F46" },
-  { id: "chrome", label: "Chrome", color: "linear-gradient(135deg, #E5E5E5, #B8B8B8, #FFFFFF, #C0C0C0)" },
-  { id: "argent", label: "Argent", color: "#C0C0C0" },
-  { id: "bleu", label: "Bleu", color: "#1E40AF" },
-  { id: "rouge", label: "Rouge", color: "#B91C1C" },
+  { id: "noir", label: "Noir", color: "#0A0A0A" },
+  { id: "blanc", label: "Blanc", color: "#FFFFFF" },
+  { id: "gris", label: "Gris", color: "#9CA3AF" },
+  { id: "chrome", label: "Chrome", color: "linear-gradient(135deg, #FFFFFF 0%, #C0C0C0 30%, #E8E8E8 50%, #A0A0A0 70%, #FFFFFF 100%)" },
+  {
+    id: "carbone",
+    label: "Carbone",
+    color:
+      "repeating-linear-gradient(45deg, #1A1A1A 0px, #1A1A1A 2px, #2D2D2D 2px, #2D2D2D 4px), repeating-linear-gradient(-45deg, #0A0A0A 0px, #0A0A0A 2px, #1F1F1F 2px, #1F1F1F 4px)",
+  },
   { id: "perso", label: "Sur mesure", color: "conic-gradient(from 0deg, #ff0080, #ff8c00, #ffd700, #00ff80, #00d4ff, #8c00ff, #ff0080)" },
 ];
 
@@ -189,7 +191,7 @@ export default function ProductDetail({ product }: { product: Product }) {
         {OPTIONS_CONFIG.map((group) => (
           <section key={group.id} className="px-5">
             <h3 className="text-base font-bold text-white mb-3">{group.title}</h3>
-            <div className="grid grid-cols-2 gap-2">
+            <div className={`grid gap-2 ${group.id === "options" ? "grid-cols-3" : "grid-cols-2"}`}>
               {group.items.map((item) => {
                 const isSelected = selected[group.id]?.includes(item.id);
                 return (
@@ -197,7 +199,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                     key={item.id}
                     whileTap={{ scale: 0.96 }}
                     onClick={() => toggleOption(group.id, item.id, group.multi)}
-                    className={`relative h-24 rounded-xl border flex flex-col items-center justify-center px-1 py-1 transition-all overflow-hidden ${
+                    className={`relative h-[88px] rounded-xl border flex flex-col items-center justify-center px-1 py-1 transition-all overflow-hidden ${
                       isSelected
                         ? "bg-gradient-to-br from-[#FFF5D6] via-[#F5E9C0] to-[#E8D9A6] border-2 border-[#C9A84C] shadow-[0_0_12px_rgba(201,168,76,0.45)]"
                         : "bg-gradient-to-br from-[#FAF3DF] to-[#EFE3BC] border-[#D4C088]/60"
@@ -206,9 +208,9 @@ export default function ProductDetail({ product }: { product: Product }) {
                     <img
                       src={item.icon}
                       alt={item.label}
-                      className="h-14 w-auto object-contain -mb-0.5"
+                      className="h-11 w-auto object-contain"
                     />
-                    <span className="text-[10px] font-bold text-[#1A1A1A] text-center leading-tight">
+                    <span className="text-[9px] font-bold text-[#1A1A1A] text-center leading-tight mt-0.5 px-0.5">
                       {item.label}
                     </span>
                     {isSelected && (
