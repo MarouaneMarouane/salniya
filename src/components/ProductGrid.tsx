@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Plus } from "lucide-react";
+import { Star, ShoppingCart } from "lucide-react";
 import { PRODUCTS } from "@/lib/data";
 
 export default function ProductGrid() {
@@ -12,7 +12,7 @@ export default function ProductGrid() {
           Top <span className="text-gold-gradient">ventes</span>
         </h2>
         <button className="text-xs font-semibold text-[#C9A84C] uppercase tracking-wider">
-          Trier ⇅
+          Voir tout →
         </button>
       </div>
 
@@ -27,7 +27,7 @@ export default function ProductGrid() {
             whileTap={{ scale: 0.97 }}
             className="card-premium rounded-2xl overflow-hidden relative"
           >
-            {/* Badges */}
+            {/* Badges top */}
             {product.badges && product.badges.length > 0 && (
               <div className="absolute top-2 left-2 z-10 flex flex-col gap-1">
                 {product.badges.map((badge) => (
@@ -41,29 +41,46 @@ export default function ProductGrid() {
               </div>
             )}
 
+            {/* Brand logo top right */}
+            <div className="absolute top-2 right-2 z-10 w-7 h-7 rounded-full bg-white border border-[#C9A84C]/30 flex items-center justify-center overflow-hidden">
+              <img
+                src={product.brandLogo}
+                alt={product.brand}
+                className="w-5 h-5 object-contain"
+                loading="lazy"
+              />
+            </div>
+
             {/* Image */}
-            <div className="aspect-square bg-gradient-to-br from-zinc-900 to-zinc-950 flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-[#C9A84C] opacity-[0.03] blur-2xl" />
-              <span className="text-6xl drop-shadow-lg">{product.image}</span>
+            <div className="aspect-square bg-gradient-to-br from-zinc-100 to-zinc-200 relative overflow-hidden">
+              <img
+                src={product.image}
+                alt={`${product.brand} ${product.model}`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
 
             {/* Info */}
             <div className="p-3 space-y-2">
-              <div className="flex items-start justify-between gap-1">
-                <div className="min-w-0">
-                  <p className="text-[10px] uppercase tracking-wider text-[#C9A84C] font-bold">
-                    {product.brand}
-                  </p>
-                  <h3 className="font-bold text-sm text-white truncate">
-                    {product.model} {product.year}
-                  </h3>
-                </div>
-                <div className="flex items-center gap-0.5 flex-shrink-0">
-                  <Star className="w-3 h-3 fill-[#C9A84C] text-[#C9A84C]" />
-                  <span className="text-[10px] font-semibold text-zinc-300">
-                    4.8
-                  </span>
-                </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-[#C9A84C] font-bold">
+                  {product.brand}
+                </p>
+                <h3 className="font-bold text-sm text-white truncate">
+                  {product.model} {product.year}
+                </h3>
+              </div>
+
+              {/* Rating */}
+              <div className="flex items-center gap-1">
+                <Star className="w-3 h-3 fill-[#C9A84C] text-[#C9A84C]" />
+                <span className="text-[10px] font-bold text-white">
+                  {product.rating}
+                </span>
+                <span className="text-[10px] text-zinc-500">
+                  ({product.reviews})
+                </span>
               </div>
 
               {/* Options */}
@@ -88,11 +105,11 @@ export default function ProductGrid() {
                     <span className="text-[10px] text-[#C9A84C] ml-0.5">MAD</span>
                   </div>
                   <div className="text-[9px] text-zinc-500 line-through">
-                    {Math.round(product.price * 1.25)} MAD
+                    {product.oldPrice} MAD
                   </div>
                 </div>
                 <button className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#E5C870] to-[#8B7330] flex items-center justify-center active:scale-90 transition-transform">
-                  <Plus className="w-4 h-4 text-black" strokeWidth={3} />
+                  <ShoppingCart className="w-4 h-4 text-black" strokeWidth={2.5} />
                 </button>
               </div>
             </div>
