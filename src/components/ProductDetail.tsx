@@ -12,7 +12,7 @@ const OPTIONS_CONFIG = [
     title: "1. Côté du rétroviseur",
     multi: false,
     items: [
-      { id: "conducteur", label: "Conducteur", icon: "/icons/conducteur.svg" },
+      { id: "conducteur", label: "Conducteur", icon: "/icons/conducteur-passager.svg" },
       { id: "passager", label: "Passager", icon: "/icons/passager.svg" },
     ],
   },
@@ -21,7 +21,7 @@ const OPTIONS_CONFIG = [
     title: "2. Type de réglage",
     multi: false,
     items: [
-      { id: "manuel", label: "Manuel", icon: "/icons/reglage-manuel.svg" },
+      { id: "manuel", label: "Manuel", icon: "/icons/connecte.svg" },
       { id: "electrique", label: "Électrique", icon: "/icons/reglage-electrique.svg" },
     ],
   },
@@ -31,7 +31,7 @@ const OPTIONS_CONFIG = [
     multi: true,
     items: [
       { id: "chauffant", label: "Chauffant", icon: "/icons/chauffant.svg" },
-      { id: "rabattable", label: "Rabattable", icon: "/icons/rabattable.svg" },
+      { id: "rabattable", label: "Rabattable", icon: "/icons/conducteur.svg" },
       { id: "memoire", label: "Mémoire", icon: "/icons/memoire.svg" },
       { id: "anti-eblouissement", label: "Anti-éblouissement", icon: "/icons/anti-eblouissement.svg" },
       { id: "angle-mort", label: "Angle mort", icon: "/icons/angle-mort.svg" },
@@ -39,7 +39,6 @@ const OPTIONS_CONFIG = [
       { id: "sous-eclairage", label: "Sous-éclairage", icon: "/icons/sous-eclairage.svg" },
       { id: "clignotant", label: "Clignotant LED", icon: "/icons/clignotant-led.svg" },
       { id: "dinamic", label: "Dynamique LED", icon: "/icons/dinamic.svg" },
-      { id: "connecte", label: "Connecté", icon: "/icons/connecte.svg" },
     ],
   },
 ];
