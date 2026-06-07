@@ -1,0 +1,33 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { BRANDS } from "@/lib/data";
+
+export default function BrandsSidebar() {
+  const [active, setActive] = useState<string | null>(null);
+
+  return (
+    <aside className="fixed top-14 right-0 bottom-20 z-30 w-[60px] flex flex-col">
+      <div className="flex-1 overflow-y-auto scrollbar-hide py-3 px-2 flex flex-col gap-2.5">
+        {BRANDS.map((brand, i) => (
+          <motion.button
+            key={brand.id}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.03 }}
+            onClick={() => setActive(brand.id)}
+            whileTap={{ scale: 0.9 }}
+            className={`relative w-11 h-11 rounded-2xl flex items-center justify-center transition-all flex-shrink-0 ${
+              active === brand.id
+                ? "bg-gradient-to-br from-[#E5C870] to-[#8B7330] text-black"
+                : "bg-[#1A1A1A] border border-[#C9A84C]/30 text-[#C9A84C] hover:border-[#C9A84C]"
+            }`}
+          >
+            <span className="text-sm font-black">{brand.logo}</span>
+          </motion.button>
+        ))}
+      </div>
+    </aside>
+  );
+}

@@ -16,7 +16,7 @@ export default function BottomNav() {
   const [active, setActive] = useState("home");
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 glass safe-bottom no-select">
+    <nav className="fixed bottom-0 left-0 right-[60px] z-50 glass safe-bottom no-select max-w-[calc(28rem-60px)] mx-auto">
       <div className="flex items-center justify-around px-2 py-2">
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
@@ -25,7 +25,7 @@ export default function BottomNav() {
             <button
               key={item.id}
               onClick={() => setActive(item.id)}
-              className="relative flex flex-col items-center justify-center gap-1 py-2 px-3 min-w-[56px]"
+              className="relative flex flex-col items-center justify-center gap-1 py-2 px-2 min-w-[48px]"
             >
               {isActive && (
                 <motion.div
