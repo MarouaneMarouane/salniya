@@ -1,8 +1,7 @@
 export type Brand = {
   id: string;
   name: string;
-  logo: string; // URL of real brand logo
-  domain: string;
+  logo: string;
 };
 
 export type Product = {
@@ -31,34 +30,28 @@ export type Mechanic = {
   phone: string;
 };
 
-// Real brand logos via Clearbit + Carlogos
+// Real official brand logos (local SVG)
 export const BRANDS: Brand[] = [
-  { id: "dacia", name: "Dacia", domain: "dacia.com", logo: "https://logo.clearbit.com/dacia.com" },
-  { id: "renault", name: "Renault", domain: "renault.com", logo: "https://logo.clearbit.com/renault.com" },
-  { id: "peugeot", name: "Peugeot", domain: "peugeot.com", logo: "https://logo.clearbit.com/peugeot.com" },
-  { id: "citroen", name: "Citroën", domain: "citroen.com", logo: "https://logo.clearbit.com/citroen.com" },
-  { id: "hyundai", name: "Hyundai", domain: "hyundai.com", logo: "https://logo.clearbit.com/hyundai.com" },
-  { id: "kia", name: "Kia", domain: "kia.com", logo: "https://logo.clearbit.com/kia.com" },
-  { id: "toyota", name: "Toyota", domain: "toyota.com", logo: "https://logo.clearbit.com/toyota.com" },
-  { id: "nissan", name: "Nissan", domain: "nissan.com", logo: "https://logo.clearbit.com/nissan.com" },
-  { id: "fiat", name: "Fiat", domain: "fiat.com", logo: "https://logo.clearbit.com/fiat.com" },
-  { id: "mercedes", name: "Mercedes-Benz", domain: "mercedes-benz.com", logo: "https://logo.clearbit.com/mercedes-benz.com" },
-  { id: "bmw", name: "BMW", domain: "bmw.com", logo: "https://logo.clearbit.com/bmw.com" },
-  { id: "vw", name: "Volkswagen", domain: "volkswagen.com", logo: "https://logo.clearbit.com/volkswagen.com" },
-  { id: "opel", name: "Opel", domain: "opel.com", logo: "https://logo.clearbit.com/opel.com" },
-  { id: "seat", name: "SEAT", domain: "seat.com", logo: "https://logo.clearbit.com/seat.com" },
-  { id: "skoda", name: "Škoda", domain: "skoda.com", logo: "https://logo.clearbit.com/skoda.com" },
-  { id: "suzuki", name: "Suzuki", domain: "suzuki.com", logo: "https://logo.clearbit.com/suzuki.com" },
-  { id: "honda", name: "Honda", domain: "honda.com", logo: "https://logo.clearbit.com/honda.com" },
-  { id: "ford", name: "Ford", domain: "ford.com", logo: "https://logo.clearbit.com/ford.com" },
+  { id: "dacia", name: "Dacia", logo: "/brands/renault.svg" }, // Dacia uses Renault group, fallback
+  { id: "renault", name: "Renault", logo: "/brands/renault.svg" },
+  { id: "peugeot", name: "Peugeot", logo: "/brands/peugeot.svg" },
+  { id: "citroen", name: "Citroën", logo: "/brands/citroen.svg" },
+  { id: "hyundai", name: "Hyundai", logo: "/brands/hyundai.svg" },
+  { id: "kia", name: "Kia", logo: "/brands/kia.svg" },
+  { id: "nissan", name: "Nissan", logo: "/brands/nissan.svg" },
+  { id: "fiat", name: "Fiat", logo: "/brands/fiat.svg" },
+  { id: "mercedes", name: "Mercedes", logo: "/brands/mercedes.svg" },
+  { id: "opel", name: "Opel", logo: "/brands/opel.svg" },
+  { id: "skoda", name: "Škoda", logo: "/brands/skoda.svg" },
+  { id: "audi", name: "Audi", logo: "/brands/audi.svg" },
+  { id: "honda", name: "Honda", logo: "/brands/honda.svg" },
 ];
 
-// Real product images of car mirrors from Unsplash
 export const PRODUCTS: Product[] = [
   {
     id: "p1",
     brand: "Dacia",
-    brandLogo: "https://logo.clearbit.com/dacia.com",
+    brandLogo: "/brands/renault.svg",
     model: "Duster",
     year: 2025,
     category: "complet",
@@ -73,7 +66,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "p2",
     brand: "Renault",
-    brandLogo: "https://logo.clearbit.com/renault.com",
+    brandLogo: "/brands/renault.svg",
     model: "Arkana",
     year: 2025,
     category: "clignotant",
@@ -88,7 +81,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "p3",
     brand: "Hyundai",
-    brandLogo: "https://logo.clearbit.com/hyundai.com",
+    brandLogo: "/brands/hyundai.svg",
     model: "Tucson",
     year: 2024,
     category: "complet",
@@ -103,7 +96,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "p4",
     brand: "Peugeot",
-    brandLogo: "https://logo.clearbit.com/peugeot.com",
+    brandLogo: "/brands/peugeot.svg",
     model: "3008",
     year: 2024,
     category: "coque",
@@ -118,7 +111,7 @@ export const PRODUCTS: Product[] = [
   {
     id: "p5",
     brand: "Kia",
-    brandLogo: "https://logo.clearbit.com/kia.com",
+    brandLogo: "/brands/kia.svg",
     model: "Sportage",
     year: 2025,
     category: "complet",
@@ -132,9 +125,9 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "p6",
-    brand: "Toyota",
-    brandLogo: "https://logo.clearbit.com/toyota.com",
-    model: "Corolla",
+    brand: "Citroën",
+    brandLogo: "/brands/citroen.svg",
+    model: "C3",
     year: 2024,
     category: "glace",
     price: 190,

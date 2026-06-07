@@ -42,11 +42,14 @@ export default function ProductGrid() {
             )}
 
             {/* Brand logo top right */}
-            <div className="absolute top-2 right-2 z-10 w-7 h-7 rounded-full bg-white border border-[#C9A84C]/30 flex items-center justify-center overflow-hidden">
+            <div className="absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-black/80 backdrop-blur border border-[#C9A84C]/40 flex items-center justify-center overflow-hidden">
               <img
                 src={product.brandLogo}
                 alt={product.brand}
                 className="w-5 h-5 object-contain"
+                style={{
+                  filter: "invert(78%) sepia(33%) saturate(694%) hue-rotate(8deg) brightness(98%) contrast(92%)",
+                }}
                 loading="lazy"
               />
             </div>
