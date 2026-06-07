@@ -12,8 +12,8 @@ const OPTIONS_CONFIG = [
     title: "1. Côté du rétroviseur",
     multi: false,
     items: [
-      { id: "conducteur", label: "Conducteur", icon: "👤" },
-      { id: "passager", label: "Passager", icon: "👥" },
+      { id: "conducteur", label: "Conducteur", icon: "/icons/conducteur.svg" },
+      { id: "passager", label: "Passager", icon: "/icons/passager.svg" },
     ],
   },
   {
@@ -21,8 +21,8 @@ const OPTIONS_CONFIG = [
     title: "2. Type de réglage",
     multi: false,
     items: [
-      { id: "manuel", label: "Manuel", icon: "🔧" },
-      { id: "electrique", label: "Électrique", icon: "⚡" },
+      { id: "manuel", label: "Manuel", icon: "/icons/reglage-manuel.svg" },
+      { id: "electrique", label: "Électrique", icon: "/icons/reglage-electrique.svg" },
     ],
   },
   {
@@ -30,25 +30,27 @@ const OPTIONS_CONFIG = [
     title: "3. Options du rétroviseur",
     multi: true,
     items: [
-      { id: "chauffant", label: "Chauffant", icon: "🔥" },
-      { id: "rabattable", label: "Rabattable", icon: "↩️" },
-      { id: "memoire", label: "Mémoire", icon: "💾" },
-      { id: "anti-eblouissement", label: "Anti-éblouissement", icon: "🌗" },
-      { id: "angle-mort", label: "Angle mort", icon: "⚠️" },
-      { id: "camera", label: "Caméra", icon: "📷" },
-      { id: "sous-eclairage", label: "Sous-éclairage", icon: "💡" },
-      { id: "clignotant", label: "Clignotant LED", icon: "✨" },
+      { id: "chauffant", label: "Chauffant", icon: "/icons/chauffant.svg" },
+      { id: "rabattable", label: "Rabattable", icon: "/icons/rabattable.svg" },
+      { id: "memoire", label: "Mémoire", icon: "/icons/memoire.svg" },
+      { id: "anti-eblouissement", label: "Anti-éblouissement", icon: "/icons/anti-eblouissement.svg" },
+      { id: "angle-mort", label: "Angle mort", icon: "/icons/angle-mort.svg" },
+      { id: "camera", label: "Caméra", icon: "/icons/camera.svg" },
+      { id: "sous-eclairage", label: "Sous-éclairage", icon: "/icons/sous-eclairage.svg" },
+      { id: "clignotant", label: "Clignotant LED", icon: "/icons/clignotant-led.svg" },
+      { id: "dinamic", label: "Dynamique LED", icon: "/icons/dinamic.svg" },
+      { id: "connecte", label: "Connecté", icon: "/icons/connecte.svg" },
     ],
   },
 ];
 
 const COLORS = [
-  { id: "noir", label: "Noir brillant", color: "#000000" },
-  { id: "blanc", label: "Blanc nacré", color: "#FFFFFF" },
-  { id: "gris", label: "Gris clair", color: "#999999" },
-  { id: "anthracite", label: "Gris anthracite", color: "#444444" },
-  { id: "argent", label: "Gris métallisé", color: "#C0C0C0" },
-  { id: "perso", label: "Sur mesure", color: "linear-gradient(135deg, #ff0080, #ff8c00, #ffd700, #00ff80, #00ffff, #8c00ff)" },
+  { id: "noir", label: "Noir", icon: "/icons/base.svg" },
+  { id: "blanc", label: "Blanc nacré", icon: "/icons/color-white.svg" },
+  { id: "chrome", label: "Chrome", icon: "/icons/color-chrome.svg" },
+  { id: "bleu", label: "Bleu", icon: "/icons/color-blue.svg" },
+  { id: "or", label: "Or premium", icon: "/icons/base-or.svg" },
+  { id: "perso", label: "Sur mesure", icon: "/icons/color-custom.svg" },
 ];
 
 export default function ProductDetail({ product }: { product: Product }) {
@@ -187,14 +189,25 @@ export default function ProductDetail({ product }: { product: Product }) {
                     key={item.id}
                     whileTap={{ scale: 0.96 }}
                     onClick={() => toggleOption(group.id, item.id, group.multi)}
-                    className={`relative h-20 rounded-2xl border-2 flex flex-col items-center justify-center gap-1 transition-all ${
+                    className={`relative h-28 rounded-2xl border-2 flex flex-col items-center justify-center gap-1.5 transition-all overflow-hidden ${
                       isSelected
-                        ? "bg-gradient-to-br from-[#E5C870]/20 to-[#8B7330]/20 border-[#C9A84C] shadow-[0_0_12px_rgba(201,168,76,0.3)]"
+                        ? "bg-gradient-to-br from-[#E5C870]/15 to-[#8B7330]/10 border-[#C9A84C] shadow-[0_0_16px_rgba(201,168,76,0.3)]"
                         : "bg-[#141414] border-white/10"
                     }`}
                   >
-                    <span className="text-2xl">{item.icon}</span>
-                    <span className={`text-[11px] font-semibold ${isSelected ? "text-[#C9A84C]" : "text-zinc-400"}`}>
+                    <div className="flex-1 flex items-center justify-center px-3 w-full">
+                      <img
+                        src={item.icon}
+                        alt={item.label}
+                        className="max-h-12 w-auto object-contain"
+                        style={{
+                          filter: isSelected
+                            ? "none"
+                            : "brightness(0) invert(1) opacity(0.6)",
+                        }}
+                      />
+                    </div>
+                    <span className={`text-[11px] font-semibold pb-2 px-1 text-center leading-tight ${isSelected ? "text-[#C9A84C]" : "text-zinc-400"}`}>
                       {item.label}
                     </span>
                     {isSelected && (
@@ -213,25 +226,41 @@ export default function ProductDetail({ product }: { product: Product }) {
 
         {/* Couleurs */}
         <section className="px-5">
-          <h3 className="text-base font-bold text-white mb-3">4. Couleur</h3>
-          <div className="flex flex-wrap gap-2.5">
-            {COLORS.map((c) => (
-              <button
-                key={c.id}
-                onClick={() => setColor(c.id)}
-                className={`group flex flex-col items-center gap-1.5 transition-transform active:scale-95`}
-              >
-                <div
-                  className={`w-12 h-12 rounded-full border-2 transition-all ${
-                    color === c.id ? "border-[#C9A84C] shadow-[0_0_12px_rgba(201,168,76,0.5)]" : "border-zinc-700"
+          <h3 className="text-base font-bold text-white mb-3">4. Finition / Couleur</h3>
+          <div className="grid grid-cols-3 gap-2">
+            {COLORS.map((c) => {
+              const isSel = color === c.id;
+              return (
+                <button
+                  key={c.id}
+                  onClick={() => setColor(c.id)}
+                  className={`relative h-24 rounded-2xl border-2 flex flex-col items-center justify-center gap-1 overflow-hidden transition-all ${
+                    isSel
+                      ? "bg-gradient-to-br from-[#E5C870]/15 to-[#8B7330]/10 border-[#C9A84C] shadow-[0_0_16px_rgba(201,168,76,0.3)]"
+                      : "bg-[#141414] border-white/10"
                   }`}
-                  style={{ background: c.color }}
-                />
-                <span className={`text-[10px] font-semibold ${color === c.id ? "text-[#C9A84C]" : "text-zinc-500"}`}>
-                  {c.label}
-                </span>
-              </button>
-            ))}
+                >
+                  <div className="flex-1 flex items-center justify-center px-2 pt-2 w-full">
+                    <img
+                      src={c.icon}
+                      alt={c.label}
+                      className="max-h-10 w-auto object-contain"
+                      style={{ filter: isSel ? "none" : "opacity(0.85)" }}
+                    />
+                  </div>
+                  <span className={`text-[10px] font-semibold pb-1.5 text-center leading-tight px-1 ${isSel ? "text-[#C9A84C]" : "text-zinc-400"}`}>
+                    {c.label}
+                  </span>
+                  {isSel && (
+                    <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#C9A84C] flex items-center justify-center">
+                      <svg className="w-2.5 h-2.5 text-black" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </section>
 
